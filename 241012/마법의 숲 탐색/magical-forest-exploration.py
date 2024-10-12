@@ -17,7 +17,7 @@ forest = [[1]+[0]*C+[1] for _ in range(R+3)]+[[1]*(C+2)]
 
 def BFS(si, sj):
     queue = deque([(si, sj)])
-    visited = [[0 for _ in range(C+2)] for _ in range(R+4)]
+    visited = [[0]*(C+2) for _ in range(R+4)]
     
     mx_i = 0   
 

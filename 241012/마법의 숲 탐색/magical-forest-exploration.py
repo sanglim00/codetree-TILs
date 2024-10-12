@@ -1,3 +1,8 @@
+from collections import deque
+import sys
+
+input = sys.stdin.readline
+
 R, C, K = map(int, input().split())
 
 golem = [list(map(int, input().split())) for _ in range(K)]
@@ -9,13 +14,13 @@ dy = (0, 1, 0, -1)
 forest = [[1]+[0]*C+[1] for _ in range(R+3)]+[[1]*(C+2)]
 
 def BFS(si, sj):
-    queue = [(si, sj)]
+    queue = deque([(si, sj)])
     visited = [[0]*(C+2) for _ in range(R+4)]
     
     mx_i = 0   
 
     while queue:
-        now = queue.pop(0)
+        now = queue.popleft()
         visited[now[0]][now[1]] = 1
 
         mx_i = max(mx_i, now[0])

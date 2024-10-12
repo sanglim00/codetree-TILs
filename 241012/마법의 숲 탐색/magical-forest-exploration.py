@@ -5,8 +5,8 @@ R, C, K = map(int, input().split())
 golem = [list(map(int, input().split())) for _ in range(K)]
 exit_ = set()
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
+dx = (-1, 0, 1, 0)
+dy = (0, 1, 0, -1)
 
 forest = [[1]+[0]*C+[1] for _ in range(R+3)]+[[1]*(C+2)]
 
@@ -23,7 +23,7 @@ def BFS(si, sj):
         mx_i = max(mx_i, now[0])
 
         for i in range(4):
-            ni,nj = now[0] + dy[i], now[1] + dx[i]
+            ni ,nj = now[0] + dy[i], now[1] + dx[i]
             if visited[ni][nj] == 0 and (forest[now[0]][now[1]] == forest[ni][nj] or ((now[0], now[1]) in exit_ and forest[ni][nj] > 1)):
                 queue.append((ni,nj))
 
@@ -64,11 +64,11 @@ for cj, dr in golem:
     
     # 골렘 표시
     else:
-        forest[ci+1][cj], forest[ci-1][cj] = num, num
-        forest[ci][cj-1:cj+2] = num, num, num
+        forest[ci+1][cj] = forest[ci-1][cj] = num
+        forest[ci][cj-1: cj+2] = [num] * 3
         num += 1
 
-        exit_.add((ci+dx[dr], cj+dy[dr]))
+        exit_.add((ci + dx[dr], cj + dy[dr]))
         ans += BFS(ci, cj)
 
 print(ans)

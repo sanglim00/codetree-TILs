@@ -1,14 +1,9 @@
-import sys
 from collections import deque
 
-R, C, K = map(int, sys.stdin.readline().split())
+R, C, K = map(int, input().split())
 
-golem = []
+golem = [list(map(int, input().split())) for _ in range(K)]
 exit_ = set()
-
-for _ in range(K):
-    c, d = map(int, sys.stdin.readline().split())
-    golem.append((c, d))
 
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
